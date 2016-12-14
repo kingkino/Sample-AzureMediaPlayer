@@ -1,0 +1,63 @@
+﻿
+
+@model IEnumerable<Sample_AzureMediaPlayer.Models.amsModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="page-header">サンプル動画一覧</h1>
+        <p class="lead">件数 : @Model.Count().ToString()件</p>
+    </div>
+</div>
+
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4" >
+            <section  class="card">
+                <img class="card-img" src="@item.ThumbNailUri" data-toggle="modal" data-target="#modal-movie" data-backdrop="static" data-title="@item.Name" data-uri="@item.LocatorUri">
+                <div class="card-content">
+                    <h6 class="card-title">@item.Name</h6>
+                    <p>更新日付：@item.UpdateDate</p>
+                    <p>容量：@Sample_AzureMediaPlayer.Common.ViewHelper.GetFormatSizeString(@item.TotalSize)</p>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal-movie" data-title="@item.Name" data-uri="@item.LocatorUri">
+                        再生
+                    </button>
+                </div>
+            </section>
+        </div>
+    }
+
+</div>
+
+<div class="modal" id="modal-movie" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">           
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="modal-label">ダイアログ</h4>
+            </div>
+            
+            <div class="modal-body">
+                @*<video id="vid" class="azuremediaplayer amp-default-skin" controls width="640" height="360" poster="" data-setup='{"nativeControlsForTouch": false}'>
+                    <source src="" type="application/vnd.ms-sstr+xml" />
+                    <p class="amp-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a web browser that supports HTML5 video
+                    </p>
+                </video>*@
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">閉じる</button>
+            </div>
+
+        </div>
+    </div>
+</div>
