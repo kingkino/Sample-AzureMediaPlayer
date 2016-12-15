@@ -60,7 +60,7 @@ namespace Sample_AzureMediaPlayer.Azure
                     {
                         ToatlSize += fileItem.ContentFileSize;
 
-                        if (fileItem.Name.Contains("png"))
+                        if (fileItem.Name.Contains("png") || fileItem.Name.Contains("jpg") || fileItem.Name.Contains("bmp"))
                         {
                             foreach (var item in fileItem.Asset.Locators)
                             {

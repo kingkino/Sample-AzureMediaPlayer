@@ -27,6 +27,7 @@
         window.appInsights=appInsights;
         appInsights.trackPageView();
 
+        // ダイアログ表示時にBodyに<video>タグを差し込む
         $(function () {
             $('#modal-movie').on('show.bs.modal', function (event) {
                 var title = $(event.relatedTarget).data('title');
@@ -48,7 +49,12 @@
                 // AzureMediaPlayerのjsを再読み込み
                 $.getScript("//amp.azure.net/libs/amp/1.8.0/azuremediaplayer.min.js", function () {
                 });
+            });
+        });
 
+        $(function () {
+            $('#modal-movie').on('hide.bs.modal', function (event) {
+                $(this).find('.vjs-tech').remove();
             });
         });
 
